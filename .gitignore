@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# markdown documents (README.md, CODE_GUIDE.md, AGENTS.md, ...) - kept on this computer only
+*.md
