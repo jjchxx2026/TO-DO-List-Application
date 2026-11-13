@@ -1,0 +1,254 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Page container: centred, comfortable width, 16px side gutter on phones */
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 16px 48px;
+}
+
+/* Add-task form: fields side by side on wide screens, stacked on phones */
+.add-todo-form {
+  display: grid;
+  grid-template-columns: 1fr 170px 150px 130px;
+  gap: 0 12px;
+  align-items: start;
+}
+
+.add-todo-form .ant-form-item {
+  margin-bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .add-todo-form {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .add-todo-description {
+    grid-column: 1 / -1;
+  }
+  .add-todo-form .ant-form-item:last-child .ant-form-item-label {
+    display: none;
+  }
+}
+
+/* Search / filter / sort toolbar */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.filters-search {
+  flex: 1 1 220px;
+}
+
+.filters-sort {
+  min-width: 220px;
+}
+
+@media (max-width: 720px) {
+  .filters-search,
+  .filters-sort {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+/* Pagination bar under the list */
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.pager .ant-pagination {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.pager-word {
+  padding: 0 8px;
+}
+
+.pager-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+}
+
+.pager-size {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .pager {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pager-controls {
+    justify-content: space-between;
+  }
+}
+
+.filter-count {
+  display: block;
+  margin: -4px 0 8px;
+  font-size: 13px;
+}
+
+/* Calendar view */
+.cal-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.cal-legend-hint {
+  margin-left: auto;
+  font-size: 13px;
+}
+
+.cal-tasks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cal-tasks li + li {
+  margin-top: 2px;
+}
+
+.cal-task {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 0 4px;
+  border-left: 3px solid;
+  border-radius: 2px;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.cal-task.is-done {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.cal-more {
+  font-size: 12px;
+}
+
+.cal-dots {
+  margin-top: 2px;
+}
+
+.cal-dots .cal-dot {
+  width: 6px;
+  height: 6px;
+}
+
+/* Compact calendar (phones): give it the same border as the full one */
+.task-calendar.ant-picker-calendar-mini {
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+}
+
+/* Import pop-up: list of skipped rows */
+.import-errors {
+  margin: 0;
+  padding-left: 18px;
+}
+
+/* Task list */
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-list li + li {
+  border-top: 1px solid #f0f0f0;
+}
+
+.todo-item {
+  padding: 12px 4px;
+}
+
+.todo-item-main {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.todo-item-date {
+  font-size: 13px;
+}
+
+/* Drag-and-drop */
+.drag-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 32px;
+  margin-left: -4px;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.35);
+  cursor: grab;
+  touch-action: none;
+}
+
+.drag-handle:hover {
+  color: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.drag-handle:focus-visible {
+  outline: 2px solid #1677ff;
+  outline-offset: 1px;
+}
+
+.todo-list li.is-dragging {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.todo-list li.is-dragging .drag-handle {
+  cursor: grabbing;
+}
+
+.reorder-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
