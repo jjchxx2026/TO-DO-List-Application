@@ -3,7 +3,7 @@
 import { Button, Checkbox, Flex, Popconfirm, Tag, Tooltip, Typography } from "antd";
 import { DeleteOutlined, EditOutlined, HolderOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { DATE_FORMAT, getCategoryColor } from "@/utils/constants";
+import { DATE_FORMAT, formatCreatedAt, getCategoryColor } from "@/utils/constants";
 
 const { Text } = Typography;
 
@@ -45,6 +45,9 @@ export default function TodoItem({ todo, dragHandleProps, onToggle, onEdit, onDe
             {isDueToday && " · Today"}
           </Text>
         </Flex>
+        <Text type="secondary" className="todo-item-created">
+          Created {formatCreatedAt(todo.createdAt)}
+        </Text>
       </Flex>
 
       <Flex gap={4}>

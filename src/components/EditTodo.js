@@ -1,8 +1,10 @@
 "use client";
 
-import { DatePicker, Form, Input, Modal, Radio, Switch } from "antd";
+import { DatePicker, Form, Input, Modal, Radio, Switch, Typography } from "antd";
 import dayjs from "dayjs";
-import { CATEGORIES, DATE_FORMAT, isBeforeToday } from "@/utils/constants";
+import { CATEGORIES, DATE_FORMAT, formatCreatedAt, isBeforeToday } from "@/utils/constants";
+
+const { Text } = Typography;
 
 // Pop-up window for editing an existing task.
 // `todo` is the task being edited, or null when the pop-up is closed.
@@ -76,6 +78,14 @@ export default function EditTodo({ todo, onSave, onCancel }) {
 
           <Form.Item name="completed" label="Completed">
             <Switch />
+          </Form.Item>
+
+          {/* Shown for information only. It has no `name`, so it is not part of the form
+              values and can't be changed: it is set once, when the task is created. */}
+          <Form.Item label="Date created" style={{ marginBottom: 0 }}>
+            <Text type="secondary" className="edit-created">
+              {formatCreatedAt(todo.createdAt)}
+            </Text>
           </Form.Item>
         </Form>
       )}

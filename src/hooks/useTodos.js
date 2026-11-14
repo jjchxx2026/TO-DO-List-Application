@@ -92,6 +92,8 @@ export function useTodos() {
   }, []);
 
   // Change some fields of one task, e.g. editTodo(id, { description: "New text" }).
+  // `id` and `createdAt` always keep their original values, even if `changes` contains them:
+  // the date created is set once, when the task is added, and is never editable.
   const editTodo = useCallback((id, changes) => {
     saveTodos((current) =>
       current.map((todo) =>
@@ -100,6 +102,8 @@ export function useTodos() {
               ...todo,
               ...changes,
               description: (changes.description ?? todo.description).trim(),
+              id: todo.id,
+              createdAt: todo.createdAt,
             }
           : todo
       )

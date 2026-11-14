@@ -213,6 +213,10 @@ body {
   font-size: 13px;
 }
 
+.todo-item-created {
+  font-size: 12px;
+}
+
 /* Drag-and-drop */
 .drag-handle {
   display: inline-flex;

@@ -24,6 +24,16 @@ export function getCategoryHex(category) {
 // and Excel, and sort correctly as text.
 export const DATE_FORMAT = "YYYY-MM-DD";
 
+// When a task was created. `createdAt` is stored as an ISO timestamp
+// (e.g. "2026-11-14T02:30:00.000Z", always UTC); dayjs shows it in the user's own time zone.
+export const CREATED_FORMAT = "D MMM YYYY, h:mm A"; // e.g. "14 Nov 2026, 10:30 AM"
+
+export function formatCreatedAt(createdAt) {
+  if (!createdAt) return "—";
+  const date = dayjs(createdAt);
+  return date.isValid() ? date.format(CREATED_FORMAT) : "—";
+}
+
 // Due dates can't be in the past. `date` is a dayjs object (what Ant Design's DatePicker uses).
 // Today itself is allowed.
 export function isBeforeToday(date) {
